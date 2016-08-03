@@ -1,0 +1,12 @@
+        _menuView = [MenuView createMenuWithFrame:CGRectMake(x, y, width, height) target:self.navigationController dataArray:dataArray itemsClickBlock:^(NSString *str, NSInteger tag) {
+            
+            // do something
+            [weakSelf doSomething:(NSString *)str tag:(NSInteger)tag];
+            
+        } backViewTap:^{
+            // 点击背景遮罩view后的block，可自定义事件
+            // 这里的目的是，让rightButton点击，可再次pop出menu
+            weakSelf.flag = YES;
+            _menuView = nil;
+            
+        }];

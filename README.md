@@ -17,7 +17,7 @@
         }];
         
 ### 参数描述
-     fame:pop的菜单左边，宽高
+     fame:pop的菜单坐标，宽高
      target：菜单将要展示的所在控制器
      dataArray：菜单项内容
      itemsClickBlock：点击菜单的block回调,回调菜单文字和下标

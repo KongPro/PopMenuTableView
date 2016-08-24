@@ -79,8 +79,7 @@
     self.flag = YES;
 }
 
-- (void)doSomething{
-}
+- (void)do{}
 
 - (void)doSomething:(NSString *)str tag:(NSInteger)tag{
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:str message:[NSString stringWithFormat:@"点击了第%ld个菜单项",tag + 1] preferredStyle:UIAlertControllerStyleAlert];

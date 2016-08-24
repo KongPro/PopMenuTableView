@@ -2,19 +2,20 @@
 ## Easy to use this menu，that like iPad
 ![KKPopMenu.gif](http://code.cocoachina.com/uploads/attachments/20160802/132345/58e721bd6e90b52a1ba1407ed96bdcf8.gif)
 
-#代码示例
-          _menuView = [MenuView createMenuWithFrame:CGRectMake(x, y, width, height) target:self.navigationController dataArray:dataArray itemsClickBlock:^(NSString *str, NSInteger tag) {
-            
-            // do something
-            [weakSelf doSomething:(NSString *)str tag:(NSInteger)tag];
-            
-        } backViewTap:^{
-            // 点击背景遮罩view后的block，可自定义事件
-            // 这里的目的是，让rightButton点击，可再次pop出menu
-            weakSelf.flag = YES;
-            _menuView = nil;
-            
-        }];
+#代码示例：类方法
+    __weak __typeof(&*self)weakSelf = self;
+    /**
+     *  创建menu
+     */
+    [MenuView createMenuWithFrame:CGRectMake(x, y, width, height) target:self.navigationController dataArray:dataArray itemsClickBlock:^(NSString *str, NSInteger tag) {
+        // do something
+        [weakSelf doSomething:(NSString *)str tag:(NSInteger)tag];
+        
+    } backViewTap:^{
+        // 点击背景遮罩view后的block，可自定义事件
+        // 这里的目的是，让rightButton点击，可再次pop出menu
+        weakSelf.flag = YES;
+    }];
         
 ### 参数描述
      fame:pop的菜单坐标，宽高

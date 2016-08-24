@@ -21,7 +21,7 @@
 @end
 
 @implementation MenuView
-
+// 懒加载
 - (void)setDataArray:(NSArray *)dataArray{
     
     NSMutableArray *tempMutableArr = [NSMutableArray array];

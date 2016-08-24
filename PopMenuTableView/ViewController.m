@@ -60,7 +60,6 @@
     }];
 }
 
-// rightBarButton的click事件
 - (IBAction)popMenu:(id)sender {    
     if (self.flag) {
         [MenuView showMenuWithAnimation:self.flag];

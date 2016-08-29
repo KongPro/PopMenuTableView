@@ -1,6 +1,6 @@
 # PopMenuTableView
 ## Easy to use this menu，that like iPad
-![KKPopMenu.gif](http://code.cocoachina.com/uploads/attachments/20160802/132345/58e721bd6e90b52a1ba1407ed96bdcf8.gif)
+![KKPopMenu.gif](http://code.cocoachina.com/uploads/attachments/20160824/132680/4473f6c28de38821220582c1b503b33e.gif)
 
 #代码示例：类方法
     __weak __typeof(&*self)weakSelf = self;

@@ -8,7 +8,9 @@
 
 #import "MenuTableViewCell.h"
 
-@implementation MenuTableViewCell
+@implementation MenuTableViewCell {
+    UIView *_lineView;
+}
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self == [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
@@ -20,11 +22,17 @@
 - (void)setUpUI{
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, self.bounds.size.height - 1, self.bounds.size.width, 1)];
     lineView.backgroundColor = [UIColor lightGrayColor];
+    _lineView = lineView;
     [self addSubview:lineView];
     self.backgroundColor = [UIColor clearColor];
     self.textLabel.font = [UIFont systemFontOfSize:14];
     self.textLabel.textColor = [UIColor whiteColor];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
+}
+
+- (void)layoutSubviews{
+    [super layoutSubviews];
+    _lineView.frame = CGRectMake(0, self.bounds.size.height - 1, self.bounds.size.width, 1);
 }
 
 - (void)setMenuModel:(MenuModel *)menuModel{

@@ -35,12 +35,23 @@ typedef void(^BackViewTapBlock)();
  */
 + (void)showMenuWithAnimation:(BOOL)isShow;
 
-/**
- *  隐藏菜单
- */
+/* 隐藏菜单 */
 + (void)hidden;
-/**
- *  移除菜单
- */
+
+/**移除菜单  */
 + (void)clearMenu;
+
+/**
+ *  追加菜单项
+ *
+ *  @param itemsArray 需要追加的菜单项内容数组
+ */
++ (void)appendMenuItemsWith:(NSArray *)appendItemsArray;
+
+/**
+ *  更新菜单项
+ *
+ *  @param itemsArray 需要更新的菜单项内容数组
+ */
++ (void)updateMenuItemsWith:(NSArray *)newItemsArray;
 @end

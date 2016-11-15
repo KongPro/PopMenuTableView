@@ -14,11 +14,11 @@
 # 代码示例：类方法
 ## `创建`：
 * 传递参数说明dataArray -- 由菜单文字内容及图片名称组成的`字典数组`
-    __weak __typeof(&*self)weakSelf = self;
+```Objective-C
+   __weak __typeof(&*self)weakSelf = self;
     /**
      *  创建menu
      */
-```
     [MenuView createMenuWithFrame:CGRectMake(x, y, width, height) target:self.navigationController dataArray:dataArray itemsClickBlock:^(NSString *str, NSInteger tag) {
         // do something
         [weakSelf doSomething:(NSString *)str tag:(NSInteger)tag];
@@ -30,21 +30,21 @@
     }];
 ```
 ## 追加菜单项目
-* 方法名称 ：
-```
+* 方法名称：
+``` Objective-C
    + (void)appendMenuItemsWith:(NSArray *)appendItemsArray;
 ```
 * 调用方法：
-```
+```Objective-C
     NSDictionary *addDict = @{@"imageName" : @"icon_button_recall",
                               @"itemName" : @"新增项"
                               };
-    NSArray *`newItemArray` = @[addDict];
-  [MenuView appendMenuItemsWith:`newItemArray`];
+    NSArray *newItemArray = @[addDict];
+   [MenuView appendMenuItemsWith:newItemArray]; 
+   // newItemArray :在原有菜单项个数基础上，追加的菜单项（例如：在菜单中有三项，需要增加第四，第五...项等）
 ```
-   `newItemArray `:在原有菜单项个数基础上，追加的菜单项 （liru ）
-
     
+ 
 # 参数描述
     fame:pop的菜单坐标和宽高
     target：菜单将要展示的所在控制器 

@@ -30,9 +30,8 @@
     self.flag = YES;
     
     /**
-     *  这些数据是菜单显示的图片和文字，写在这里，不知合不合理，请各位大牛指教，如果有更好的方法：
-     *  e-mail : KongPro@163.com
-     *  喜欢请砸github上点颗星星，多谢！
+     *  这些数据是菜单显示的图片名称和菜单文字，请各位大牛指教，如果有更好的方法：
+     *  e-mail : KongPro@163.com，喜欢请在github上点颗星星，不胜感激！ 🙏
      */
     NSDictionary *dict1 = @{@"imageName" : @"icon_button_affirm",
                              @"itemName" : @"撤回"
@@ -46,11 +45,9 @@
     NSArray *dataArray = @[dict1,dict2,dict3];
     _dataArray = dataArray;
     
-    // 计算菜单frame
     CGFloat x = self.view.bounds.size.width / 3 * 2;
     CGFloat y = 64 - 12;
-//    CGFloat width = self.view.bounds.size.width * 0.3;
-//    CGFloat height = dataArray.count * 40;  // 40 -> tableView's RowHeight
+
     __weak __typeof(&*self)weakSelf = self;
     /**
      *  创建menu
@@ -76,17 +73,6 @@
     }
 }
 
-- (void)doSomething:(NSString *)str tag:(NSInteger)tag{
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:str message:[NSString stringWithFormat:@"点击了第%ld个菜单项",tag] preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-    }];
-    [alertController addAction:action];
-    [self presentViewController:alertController animated:YES completion:nil];
-    
-    [MenuView hidden];  // 隐藏菜单
-    self.flag = YES;
-}
-
 #pragma mark  -- 增加一个菜单项
 - (IBAction)addMenuItem:(id)sender {
     
@@ -96,7 +82,7 @@
     NSArray *newItemArray = @[addDict];
     
     /**
-     *  更新菜单
+     *  追加菜单项
      */
     [MenuView appendMenuItemsWith:newItemArray];
     
@@ -106,10 +92,26 @@
 
 #pragma mark -- 恢复菜单项
 - (IBAction)removeMenuItem:(id)sender {
+    
+    /**
+     *  更新菜单
+     */
     [MenuView updateMenuItemsWith:_dataArray];
     
     self.itemCount = 0;
     self.numberLabel.text = [NSString stringWithFormat:@"累计增加 %d 项", self.itemCount];
+}
+
+#pragma mark -- 回调事件
+- (void)doSomething:(NSString *)str tag:(NSInteger)tag{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:str message:[NSString stringWithFormat:@"点击了第%ld个菜单项",tag] preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    }];
+    [alertController addAction:action];
+    [self presentViewController:alertController animated:YES completion:nil];
+    
+    [MenuView hidden];  // 隐藏菜单
+    self.flag = YES;
 }
 
 

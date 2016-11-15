@@ -12,6 +12,7 @@
 #define MENU_TAG 99999  // MenuView的tag
 #define BACKVIEW_TAG 88888  // 背景遮罩view的tag
 #define KRowHeight 40   // cell行高
+#define KDefaultMaxValue 6  // 菜单项最大值
 #define KMargin 15
 
 @interface MenuView () <UITableViewDataSource,UITableViewDelegate>
@@ -28,7 +29,6 @@
 @implementation MenuView
 #pragma mark -- setDataArray
 - (void)setDataArray:(NSMutableArray *)dataArray{
-    
     if (!_dataArray) {
         _dataArray = [NSMutableArray array];
     }
@@ -38,6 +38,14 @@
             [_dataArray addObject:model];
         }
     }];
+}
+
+- (void)setMaxValueForItemCount:(NSInteger)maxValueForItemCount{
+    if (maxValueForItemCount <= KDefaultMaxValue) {
+        _maxValueForItemCount = maxValueForItemCount;
+    }else{
+        _maxValueForItemCount = KDefaultMaxValue;
+    }
 }
 
 #pragma mark -- layoutSubviews
@@ -58,10 +66,11 @@
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 15, frame.size.width, frame.size.height)];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.bounces = NO;
     self.tableView.rowHeight = KRowHeight;
+    self.tableView.showsVerticalScrollIndicator = NO;
     self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[MenuTableViewCell class] forCellReuseIdentifier:@"cell"];
     
     UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, self.target.view.bounds.size.width, self.target.view.bounds.size.height)];
@@ -110,17 +119,21 @@
     }
 }
 
+
 #pragma mark -- Adjust Menu Frame
 - (void)adjustFrameForMenu{
     
     MenuView *menuView = [[UIApplication sharedApplication].keyWindow viewWithTag:MENU_TAG];
-    
-    CGRect rect = CGRectMake(menuView.tableView.frame.origin.x, menuView.tableView.frame.origin.y, menuView.tableView.frame.size.width, KRowHeight * menuView.dataArray.count);
-    CGRect frame = CGRectMake(menuView.frame.origin.x, menuView.frame.origin.y, menuView.frame.size.width,  (KRowHeight * menuView.dataArray.count + KMargin) * 0.01);
+    menuView.maxValueForItemCount = menuView.dataArray.count;
+
+    CGRect rect = CGRectMake(menuView.tableView.frame.origin.x, menuView.tableView.frame.origin.y, menuView.tableView.frame.size.width, KRowHeight * menuView.maxValueForItemCount);
+    CGRect frame = CGRectMake(menuView.frame.origin.x, menuView.frame.origin.y, menuView.frame.size.width,  (menuView.maxValueForItemCount * KRowHeight + KMargin) * 0.01);
     
     menuView.tableView.frame = rect;   // 根据菜单项，调整菜单内tableView的大小
     menuView.frame = frame;     // 根据菜单项，调整菜单的整体frame
+    
 }
+
 
 #pragma mark -- Create Menu
 + (MenuView *)createMenuWithFrame:(CGRect)frame target:(UIViewController *)target dataArray:(NSArray *)dataArray itemsClickBlock:(void (^)(NSString *, NSInteger))itemsClickBlock backViewTap:(void (^)())backViewTapBlock{
@@ -133,17 +146,19 @@
     MenuView *menuView = [[MenuView alloc] init];
     menuView.tag = MENU_TAG;
     menuView.frame = frame;
-    menuView.target = target;
-    menuView.dataArray = [NSMutableArray arrayWithArray:dataArray];
-    menuView.itemsClickBlock = itemsClickBlock;
-    menuView.backViewTapBlock = backViewTapBlock;
-    [menuView setUpUIWithFrame:rect];
     menuView.layer.anchorPoint = CGPointMake(0.9, 0);
     menuView.layer.position = CGPointMake(frame.origin.x + frame.size.width - KMargin, frame.origin.y);
     menuView.transform = CGAffineTransformMakeScale(0.01, 0.01);
+    menuView.target = target;
+    menuView.dataArray = [NSMutableArray arrayWithArray:dataArray];
+    menuView.maxValueForItemCount = dataArray.count;
+    menuView.itemsClickBlock = itemsClickBlock;
+    menuView.backViewTapBlock = backViewTapBlock;
+    [menuView setUpUIWithFrame:rect];
     [target.view addSubview:menuView];
     return menuView;
 }
+
 
 #pragma mark -- Show With Animation
 + (void)showMenuWithAnimation:(BOOL)isShow{
@@ -164,19 +179,6 @@
 }
 
 
-#pragma mark -- Hidden & Clear
-+ (void)hidden{
-    [MenuView showMenuWithAnimation:NO];
-}
-
-+ (void)clearMenu{
-    [MenuView showMenuWithAnimation:NO];
-    MenuView *menuView = [[UIApplication sharedApplication].keyWindow viewWithTag:MENU_TAG];
-    UIView *backView = [[UIApplication sharedApplication].keyWindow viewWithTag:BACKVIEW_TAG];
-    [menuView removeFromSuperview];
-    [backView removeFromSuperview];
-}
-
 #pragma mark -- Append Menu Items
 + (void)appendMenuItemsWith:(NSArray *)appendItemsArray{
     
@@ -189,6 +191,7 @@
     [menuView adjustFrameForMenu];
 }
 
+
 #pragma mark -- Update Menu Items
 + (void)updateMenuItemsWith:(NSArray *)newItemsArray{
     
@@ -198,6 +201,19 @@
     
     [menuView.tableView reloadData];
     [menuView adjustFrameForMenu];
+}
+
+#pragma mark -- Hidden & Clear
++ (void)hidden{
+    [MenuView showMenuWithAnimation:NO];
+}
+
++ (void)clearMenu{
+    [MenuView showMenuWithAnimation:NO];
+    MenuView *menuView = [[UIApplication sharedApplication].keyWindow viewWithTag:MENU_TAG];
+    UIView *backView = [[UIApplication sharedApplication].keyWindow viewWithTag:BACKVIEW_TAG];
+    [menuView removeFromSuperview];
+    [backView removeFromSuperview];
 }
 
 

@@ -24,7 +24,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cIK-P7-eCj">
-                                <rect key="frame" x="92" y="291" width="192" height="45"/>
+                                <rect key="frame" x="92" y="311" width="192" height="45"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="27"/>
                                 <state key="normal" title="添加一个菜单项"/>
                                 <connections>
@@ -40,13 +40,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="累计增加 0 项" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1OL-5Q-WqO">
-                                <rect key="frame" x="110.5" y="219" width="154" height="30"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="25"/>
+                                <rect key="frame" x="105.5" y="226.5" width="164.5" height="32.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="27"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="( 同时增加个数可自定义 )" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WpK-oa-jGd">
-                                <rect key="frame" x="102" y="273" width="171" height="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="( 同时增加个数取决于参数数组的大小 )" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WpK-oa-jGd">
+                                <rect key="frame" x="56" y="262" width="263" height="18"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -54,14 +54,14 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="cIK-P7-eCj" firstAttribute="top" secondItem="WpK-oa-jGd" secondAttribute="bottom" id="301-g0-qnd"/>
                             <constraint firstItem="WpK-oa-jGd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="A2v-M5-vg7"/>
                             <constraint firstItem="wNt-aA-p39" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="70" id="G69-2a-TOa"/>
                             <constraint firstItem="cIK-P7-eCj" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Ill-FF-MS7"/>
                             <constraint firstItem="1OL-5Q-WqO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="UwA-Bz-d2F"/>
+                            <constraint firstItem="WpK-oa-jGd" firstAttribute="top" secondItem="1OL-5Q-WqO" secondAttribute="bottom" constant="3" id="XW3-ar-5td"/>
                             <constraint firstItem="wNt-aA-p39" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="aON-TO-ZDe"/>
-                            <constraint firstItem="cIK-P7-eCj" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-20" id="hMB-m4-k9H"/>
-                            <constraint firstItem="cIK-P7-eCj" firstAttribute="topMargin" secondItem="1OL-5Q-WqO" secondAttribute="bottom" constant="50" id="zKo-ab-ACg"/>
+                            <constraint firstItem="cIK-P7-eCj" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="hMB-m4-k9H"/>
+                            <constraint firstItem="cIK-P7-eCj" firstAttribute="topMargin" secondItem="1OL-5Q-WqO" secondAttribute="bottom" constant="60" id="zKo-ab-ACg"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="动态菜单" id="bfY-RD-Cuh">

@@ -15,6 +15,8 @@ typedef void(^BackViewTapBlock)();
 @property (nonatomic,copy) ItemsClickBlock itemsClickBlock;
 @property (nonatomic,copy) BackViewTapBlock backViewTapBlock;
 
+@property (nonatomic,assign) NSInteger maxValueForItemCount;  // 最多菜单项个数，默认值：6;
+
 /**
  *  menu
  *

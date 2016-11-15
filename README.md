@@ -50,5 +50,6 @@
 * dataArray：菜单项内容
 * itemsClickBlock：点击菜单的block回调,回调菜单文字和下标
 * backViewTap：半透明背景点击回调
-    `（注：此菜单并非只能加在控制器的view上，有种特殊的需求就是，菜单背景图片的“小尖尖”要与navigationBar相交，此时target需要传递self.navigationController即可）`
+
+`(注：此菜单并非只能加在控制器的view上，有种特殊的需求就是，菜单背景图片的“小尖尖”要与navigationBar相交，此时target需要传递self.navigationController即可)`
   

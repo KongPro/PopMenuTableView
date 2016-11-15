@@ -165,6 +165,7 @@
     
     MenuView *menuView = [[UIApplication sharedApplication].keyWindow viewWithTag:MENU_TAG];
     UIView *backView = [[UIApplication sharedApplication].keyWindow viewWithTag:BACKVIEW_TAG];
+    menuView.tableView.contentOffset = CGPointZero;
     [UIView animateWithDuration:0.25 animations:^{
         if (isShow) {
             menuView.alpha = 1;

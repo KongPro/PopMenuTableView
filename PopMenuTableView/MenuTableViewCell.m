@@ -20,7 +20,7 @@
 }
 
 - (void)setUpUI{
-    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, self.bounds.size.height - 1, self.bounds.size.width, 1)];
+    UIView *lineView = [[UIView alloc] init];
     lineView.backgroundColor = [UIColor lightGrayColor];
     _lineView = lineView;
     [self addSubview:lineView];
@@ -32,7 +32,7 @@
 
 - (void)layoutSubviews{
     [super layoutSubviews];
-    _lineView.frame = CGRectMake(0, self.bounds.size.height - 1, self.bounds.size.width, 1);
+    _lineView.frame = CGRectMake(4, self.bounds.size.height - 1, self.bounds.size.width - 8, 1);
 }
 
 - (void)setMenuModel:(MenuModel *)menuModel{

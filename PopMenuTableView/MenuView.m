@@ -151,9 +151,9 @@
     menuView.transform = CGAffineTransformMakeScale(0.01, 0.01);
     menuView.target = target;
     menuView.dataArray = [NSMutableArray arrayWithArray:dataArray];
-    menuView.maxValueForItemCount = dataArray.count;
     menuView.itemsClickBlock = itemsClickBlock;
     menuView.backViewTapBlock = backViewTapBlock;
+    menuView.maxValueForItemCount = dataArray.count;
     [menuView setUpUIWithFrame:rect];
     [target.view addSubview:menuView];
     return menuView;
@@ -203,6 +203,7 @@
     [menuView.tableView reloadData];
     [menuView adjustFrameForMenu];
 }
+
 
 #pragma mark -- Hidden & Clear
 + (void)hidden{

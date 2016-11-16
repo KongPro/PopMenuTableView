@@ -42,7 +42,7 @@
       // self.flag : YES - 展示，NO - 不展示
       [MenuView showMenuWithAnimation:self.flag];  
    ``` 
-### 3. `追加菜单项目：`
+### 3. `追加菜单项：`
 * **方法名称：**
    ```Objective-C
       + (void)appendMenuItemsWith:(NSArray *)appendItemsArray;

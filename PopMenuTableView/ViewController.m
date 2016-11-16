@@ -50,8 +50,8 @@
      *  创建menu : frame传递nil，则取默认值，参数target必填，参数dataArray必填
      */
     [MenuView createMenuWithFrame:CGRectZero target:self.navigationController dataArray:dataArray itemsClickBlock:^(NSString *str, NSInteger tag) {
-        // do something
-        [weakSelf doSomething:(NSString *)str tag:(NSInteger)tag];
+        
+        [weakSelf doSomething:(NSString *)str tag:(NSInteger)tag]; // do something
         
     } backViewTap:^{
         // 点击背景遮罩view后的block，可自定义事件

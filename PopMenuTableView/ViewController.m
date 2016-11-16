@@ -47,7 +47,7 @@
 
     __weak __typeof(&*self)weakSelf = self;
     /**
-     *  创建menu : frame传递nil，则取默认值
+     *  创建menu : frame传递nil，则取默认值，参数target必填，参数dataArray必填
      */
     [MenuView createMenuWithFrame:CGRectZero target:self.navigationController dataArray:dataArray itemsClickBlock:^(NSString *str, NSInteger tag) {
         // do something

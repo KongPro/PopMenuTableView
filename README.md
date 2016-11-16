@@ -30,13 +30,13 @@
     }];
 ```
 ### 2. `追加菜单项目`
-* 方法名称：
+* **方法名称：**
 ```Objective-C
    + (void)appendMenuItemsWith:(NSArray *)appendItemsArray;
 ```
-* 说明：  
-**`在原有菜单项个数基础上，追加的菜单项（例如：在菜单中有三项，需要增加第四，第五...项等），可以实现动态增加菜单项`**
-* 方法调用：
+* **说明：**  
+   `在原有菜单项个数基础上，追加的菜单项（例如：在菜单中有三项，需要增加第四，第五...项等），可以实现动态增加菜单项`**
+* **方法调用：**
 ```Objective-C
     //拼接字典数组，这里可以使用 
     NSDictionary *addDict = @{@"imageName" : @"icon_button_recall",
@@ -48,16 +48,15 @@
    [MenuView appendMenuItemsWith:newItemArray];
 ```
 ### 3. `更新菜单项`
-* 方法名称：  
+* **方法名称：**  
 ```Objective-C  
    + (void)updateMenuItemsWith:(NSArray *)newItemsArray;
 ```
-* 说明：  
+* **说明：**  
 **`更新修改所有菜单的内容，根据传入的字典数组内容，动态更新菜单项，只需要传递数组即可，其他无需多虑`**
-* 方法调用：
+* **方法调用：**
 ```Objective-C
 - (IBAction)removeMenuItem:(id)sender {
-    
     /**
      *  更新菜单: _dataArray是控制器中全局字典数组，存的是菜单项图标和功能名称
      */
@@ -65,7 +64,7 @@
 }
 ```
 ### 3.`隐藏和移除`
-* 方法名称：  
+* **方法名称：**  
 ```Objective-C  
    /* 隐藏菜单 */
    + (void)hidden;
@@ -73,9 +72,14 @@
    /* 移除菜单 */
    + (void)clearMenu;
 ```
-* 说明：
-   * **隐藏：对菜单的size进行缩小，。本人考虑当控制器始终存在时，即用户`没有进行push，或者退出app`的操作(pop的情况下面会提到)时，就没必要移除菜单，避免需要菜单时的反复创建，此时应调用`hidden方法`**
-   * **移除：从父试图remove掉，当用户进行`pop`，或者`退出app`的操作(控制器已经被销毁，就没必要保留菜单并占用内存空间了)时，应当调用`clearMenu`方法**
+* **说明：**
+   * 隐藏：对菜单的size进行缩小，考虑到当控制器始终存在时，即用户`没有进行push，或者退出app`的操作(pop的情况下面会提到)时，就没必要移除菜单，避免需要菜单时的反复创建，此时应调用`hidden方法`
+   * 移除：从父试图remove掉，当用户进行`pop`，或者`退出app`的操作(控制器已经被销毁，就没必要保留菜单并占用内存空间了)时，应当调用`clearMenu`方法
+* **方法调用：**
+```Objective-C
+[MenuView hidden];  // 隐藏菜单
+[MenuView clearMenu];   // 移除菜单
+```
  
 ## 参数描述
 * fame:pop的菜单坐标和宽高

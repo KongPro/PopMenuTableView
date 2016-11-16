@@ -15,21 +15,21 @@
 ### 1. `类方法创建：`  
 
 * 传递参数说明dataArray -- 由菜单文字内容及图片名称组成的`字典数组`
-```Objective-C
-   __weak __typeof(&*self)weakSelf = self;
-    /**
-     *  创建menu
-     */
-    [MenuView createMenuWithFrame:CGRectMake(x, y, width, height) target:self.navigationController dataArray:dataArray itemsClickBlock:^(NSString *str, NSInteger tag) {
-        // do something
-        [weakSelf doSomething:(NSString *)str tag:(NSInteger)tag];
-        
-    } backViewTap:^{
-        // 点击背景遮罩view后的block，可自定义事件
-        // 这里的目的是，让rightButton点击，可再次pop出menu
-        weakSelf.flag = YES;
-    }];
-```
+   ```Objective-C
+      __weak __typeof(&*self)weakSelf = self;
+       /**
+        *  创建menu
+        */
+       [MenuView createMenuWithFrame:CGRectMake(x, y, width, height) target:self.navigationController dataArray:dataArray itemsClickBlock:^(NSString *str, NSInteger tag) {
+           // do something
+           [weakSelf doSomething:(NSString *)str tag:(NSInteger)tag];
+
+       } backViewTap:^{
+           // 点击背景遮罩view后的block，可自定义事件
+           // 这里的目的是，让rightButton点击，可再次pop出menu
+           weakSelf.flag = YES;
+       }];
+   ```
 ### 2. `追加菜单项目：`
 * **方法名称：**
 ```Objective-C
@@ -40,45 +40,45 @@
    `在原有菜单项个数基础上，追加的菜单项（例如：在菜单中有三项，需要增加第四，第五...项等），可以实现动态增加菜单项`  
    
 * **方法调用：**
-```Objective-C
-    //拼接字典数组，这里可以使用 
-    NSDictionary *addDict = @{@"imageName" : @"icon_button_recall",
-                              @"itemName" : @"新增项"
-                              };
-    NSArray *newItemArray = @[addDict];
-    
-    // 调用：参数newItemArray :追加的菜单项字典拼接成的数组
-   [MenuView appendMenuItemsWith:newItemArray];
-```  
+   ```Objective-C
+       //拼接字典数组，这里可以使用 
+       NSDictionary *addDict = @{@"imageName" : @"icon_button_recall",
+                                 @"itemName" : @"新增项"
+                                 };
+       NSArray *newItemArray = @[addDict];
+
+       // 调用：参数newItemArray :追加的菜单项字典拼接成的数组
+      [MenuView appendMenuItemsWith:newItemArray];
+   ```  
 
 ### 3. `更新菜单项：`
 * **方法名称：**  
-```Objective-C  
-   + (void)updateMenuItemsWith:(NSArray *)newItemsArray;
-```  
+   ```Objective-C  
+      + (void)updateMenuItemsWith:(NSArray *)newItemsArray;
+   ```  
 
 * **说明：**  
    `更新修改所有菜单的内容，根据传入的字典数组内容，动态更新菜单项，只需要传递数组即可，其他无需多虑`  
    
 * **方法调用：**
-```Objective-C
-- (IBAction)removeMenuItem:(id)sender {
-    /**
-     *  更新菜单: _dataArray是控制器中全局字典数组，存的是菜单项图标和功能名称
-     */
-    [MenuView updateMenuItemsWith:_dataArray];
-}
-```  
+   ```Objective-C
+      - (IBAction)removeMenuItem:(id)sender {
+          /**
+           *  更新菜单: _dataArray是控制器中全局字典数组，存的是菜单项图标和功能名称
+           */
+          [MenuView updateMenuItemsWith:_dataArray];
+      }
+   ```  
 
 ### 4.`隐藏和移除：`
 * **方法名称：**  
-```Objective-C  
-   /* 隐藏菜单 */
-   + (void)hidden;
-   
-   /* 移除菜单 */
-   + (void)clearMenu;
-```  
+   ```Objective-C  
+      /* 隐藏菜单 */
+      + (void)hidden;
+
+      /* 移除菜单 */
+      + (void)clearMenu;
+   ```  
 
 * **说明：**  
 
@@ -86,10 +86,10 @@
    * _移除：从父试图remove掉，当用户进行`pop`，或者`退出app`的操作(控制器已经被销毁，就没必要保留菜单并占用内存空间了)时，应当调用`clearMenu`方法_
    
 * **方法调用：**
-```Objective-C
-[MenuView hidden];  // 隐藏菜单
-[MenuView clearMenu];   // 移除菜单
-```
+   ```Objective-C
+      [MenuView hidden];  // 隐藏菜单
+      [MenuView clearMenu];   // 移除菜单
+   ```
  
 ## `参数描述：`
 * fame:pop的菜单坐标和宽高

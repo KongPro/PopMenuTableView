@@ -21,11 +21,11 @@
        /**
         *  创建menu
         */
-       [MenuView createMenuWithFrame:CGRectMake(x, y, width, height) target:self.navigationController dataArray:dataArray itemsClickBlock:^(NSString *str, NSInteger tag) {
-           // do something
-       } backViewTap:^{
-           // 点击背景遮罩view后的block，可自定义事件
-       }];
+       [MenuView createMenuWithFrame : CGRectMake(x, y, width, height) 
+                              target : self.navigationController 
+                           dataArray : dataArray 
+                     itemsClickBlock : ^(NSString *str, NSInteger tag) {  /* do something */  } 
+                         backViewTap : ^{  /* 点击背景遮罩view后的block，可自定义事件 */  }];
    ``` 
 
 ### 2. `展示`

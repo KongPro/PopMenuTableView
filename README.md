@@ -32,9 +32,9 @@
    ```
 ### 2. `追加菜单项目：`
 * **方法名称：**
-```Objective-C
-   + (void)appendMenuItemsWith:(NSArray *)appendItemsArray;
-```  
+   ```Objective-C
+      + (void)appendMenuItemsWith:(NSArray *)appendItemsArray;
+   ```  
 
 * **说明：**  
    `在原有菜单项个数基础上，追加的菜单项（例如：在菜单中有三项，需要增加第四，第五...项等），可以实现动态增加菜单项`  

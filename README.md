@@ -4,9 +4,9 @@
 
 ## 更新描述
 * 新增追加菜单项：在原有菜单基础上，增加一个或者多个菜单按钮。
-* 更新菜单项内容：在原有菜单基础上，更新所有的菜单项内容，(也可以局部更新).
+* 更新菜单项内容：在原有菜单基础上，更新所有的菜单项内容.(**也可以局部更新**)。
 * 同样都是类方法实现，不需要显示的创建对象。
-* 增加一个maxValueForItemCount属性，防止菜单选项无限增加，导致过长超出屏幕范围。(默认值为6，即：菜单长度最长显示6项，大于6个则需要滚动方式查看菜单项)。
+* 增加一个maxValueForItemCount属性，防止菜单选项无限增加，导致过长超出屏幕范围。(**maxValueForItemCount默认值为6，即：菜单的最大长度等于6个单项的高度和，大于6个则需要滚动方式查看菜单项**)。
 * 代码进行了进一步封装，避免重复代码冗余。
 * 使用方法依旧只需要传递内容数组，无需其他多余步骤，更精简、更独立。
 * **(⚠️注：所有的方法都是类方法，直接用类名调用即可,_`并留意文档最后的的参数说明`_)**
@@ -22,12 +22,8 @@
         */
        [MenuView createMenuWithFrame:CGRectMake(x, y, width, height) target:self.navigationController dataArray:dataArray itemsClickBlock:^(NSString *str, NSInteger tag) {
            // do something
-           [weakSelf doSomething:(NSString *)str tag:(NSInteger)tag];
-
        } backViewTap:^{
            // 点击背景遮罩view后的block，可自定义事件
-           // 这里的目的是，让rightButton点击，可再次pop出menu
-           weakSelf.flag = YES;
        }];
    ```  
 ### 2. `展示`

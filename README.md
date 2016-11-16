@@ -92,10 +92,12 @@
    ```
  
 ## `参数描述：`
-* fame:pop的菜单坐标和宽高
-* target：菜单将要展示的所在控制器 
-* dataArray：菜单项内容
+* fame: 菜单坐标和宽高 **`(非必填，取默认值）`**
+* target：菜单将要展示的所在控制器 **`(参数必填)`**
+* dataArray：菜单项内容 **`(必填参数)`**
 * itemsClickBlock：点击菜单的block回调,回调菜单文字和下标
 * backViewTap：半透明背景点击回调
 * **(注：此菜单并非只能加在控制器的view上，有种特殊的需求就是，菜单背景图片的`“小尖尖”`要与navigationBar相交，此时target需要传递self.navigationController即可)**
+### `温馨提示：`
+* demo中的target传递的是_`self.navigationController`_，frame参数的默认值也是相对navigationBar来取值。如果菜单要加在控制器的view上，则按需传frame，位置可能需要细细调整，效果才最好。
   

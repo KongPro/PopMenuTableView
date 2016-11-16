@@ -12,7 +12,7 @@
 * **(⚠️注：所有的方法都是类方法，直接用类名调用即可)**
 
 ## 代码示例：
-### 1. `类方法创建`：  
+### 1. `类方法创建：`  
 
 * 传递参数说明dataArray -- 由菜单文字内容及图片名称组成的`字典数组`
 ```Objective-C
@@ -30,7 +30,7 @@
         weakSelf.flag = YES;
     }];
 ```
-### 2. `追加菜单项目`
+### 2. `追加菜单项目：`
 * **方法名称：**
 ```Objective-C
    + (void)appendMenuItemsWith:(NSArray *)appendItemsArray;
@@ -51,14 +51,15 @@
    [MenuView appendMenuItemsWith:newItemArray];
 ```  
 
-### 3. `更新菜单项`
+### 3. `更新菜单项：`
 * **方法名称：**  
 ```Objective-C  
    + (void)updateMenuItemsWith:(NSArray *)newItemsArray;
 ```  
 
 * **说明：**  
-   `更新修改所有菜单的内容，根据传入的字典数组内容，动态更新菜单项，只需要传递数组即可，其他无需多虑`
+   `更新修改所有菜单的内容，根据传入的字典数组内容，动态更新菜单项，只需要传递数组即可，其他无需多虑`  
+   
 * **方法调用：**
 ```Objective-C
 - (IBAction)removeMenuItem:(id)sender {
@@ -69,7 +70,7 @@
 }
 ```  
 
-### 4.`隐藏和移除`
+### 4.`隐藏和移除：`
 * **方法名称：**  
 ```Objective-C  
    /* 隐藏菜单 */
@@ -89,7 +90,7 @@
 [MenuView clearMenu];   // 移除菜单
 ```
  
-## 参数描述
+## `参数描述：`
 * fame:pop的菜单坐标和宽高
 * target：菜单将要展示的所在控制器 
 * dataArray：菜单项内容

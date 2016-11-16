@@ -13,6 +13,8 @@
 #define BACKVIEW_TAG 88888  // 背景遮罩view的tag
 #define KRowHeight 40   // cell行高
 #define KDefaultMaxValue 6  // 菜单项最大值
+#define KNavigationBar_H 64 // 导航栏64
+#define KIPhoneSE_ScreenW 375
 #define KMargin 15
 
 @interface MenuView () <UITableViewDataSource,UITableViewDelegate>
@@ -131,17 +133,19 @@
     
     menuView.tableView.frame = rect;   // 根据菜单项，调整菜单内tableView的大小
     menuView.frame = frame;     // 根据菜单项，调整菜单的整体frame
-    
 }
-
 
 #pragma mark -- Create Menu
 + (MenuView *)createMenuWithFrame:(CGRect)frame target:(UIViewController *)target dataArray:(NSArray *)dataArray itemsClickBlock:(void (^)(NSString *, NSInteger))itemsClickBlock backViewTap:(void (^)())backViewTapBlock{
     
-    CGFloat width = [UIScreen mainScreen].bounds.size.width * 0.3;
-    CGFloat height = dataArray.count > 6 ? 6 * KRowHeight : dataArray.count * KRowHeight;  // 40 -> tableView's RowHeight
-    CGRect rect = CGRectMake(frame.origin.x, frame.origin.y, width, height);    // 菜单中tableView的frame
-    frame = CGRectMake(frame.origin.x, frame.origin.y, width, height + KMargin); // 菜单的整体frame
+    // 计算frame
+    CGFloat factor = [UIScreen mainScreen].bounds.size.width < KIPhoneSE_ScreenW ? 0.36 : 0.3; // 适配比例
+    CGFloat width = frame.size.width ? frame.size.width : [UIScreen mainScreen].bounds.size.width * factor;
+    CGFloat height = dataArray.count > KDefaultMaxValue ? KDefaultMaxValue * KRowHeight : dataArray.count * KRowHeight;
+    CGFloat x = frame.origin.x ? frame.origin.x : [UIScreen mainScreen].bounds.size.width - width - KMargin * 0.5;
+    CGFloat y = frame.origin.y ? frame.origin.y : KNavigationBar_H - KMargin * 0.5;
+    CGRect rect = CGRectMake(x, y, width, height);    // 菜单中tableView的frame
+    frame = CGRectMake(x, y, width, height + KMargin); // 菜单的整体frame
     
     MenuView *menuView = [[MenuView alloc] init];
     menuView.tag = MENU_TAG;

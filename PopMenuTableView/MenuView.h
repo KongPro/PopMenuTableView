@@ -40,7 +40,7 @@ typedef void(^BackViewTapBlock)();
 /* 隐藏菜单 */
 + (void)hidden;
 
-/**移除菜单  */
+/* 移除菜单 */
 + (void)clearMenu;
 
 /**

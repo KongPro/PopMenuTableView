@@ -44,15 +44,12 @@
                             };
     NSArray *dataArray = @[dict1,dict2,dict3];
     _dataArray = dataArray;
-    
-    CGFloat x = self.view.bounds.size.width / 3 * 2;
-    CGFloat y = 64 - 12;
 
     __weak __typeof(&*self)weakSelf = self;
     /**
-     *  创建menu
+     *  创建menu : frame传递nil，则取默认值
      */
-    [MenuView createMenuWithFrame:CGRectMake(x, y, 0, 0) target:self.navigationController dataArray:dataArray itemsClickBlock:^(NSString *str, NSInteger tag) {
+    [MenuView createMenuWithFrame:CGRectZero target:self.navigationController dataArray:dataArray itemsClickBlock:^(NSString *str, NSInteger tag) {
         // do something
         [weakSelf doSomething:(NSString *)str tag:(NSInteger)tag];
         

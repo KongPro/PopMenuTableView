@@ -29,17 +29,18 @@
    ``` 
 
 ### 2. `展示`
-* **方法名称：**
+* **方法名称：**  
+
    ```Objective-C
       + (void)showMenuWithAnimation:(BOOL)isShow;
    ```  
 * **说明：**  
    _自带**`动画缩放效果`**的pop展示，参数**`isSHow`**控制展示或不展示，(也可以通过**`hidden`**方法来控制隐藏，后续有说明)_
 
-* **方法调用：**
+* **方法调用：**  
    ```Objective-C
-   // self.flag : YES - 展示，NO - 不展示
-   [MenuView showMenuWithAnimation:self.flag];  
+      // self.flag : YES - 展示，NO - 不展示
+      [MenuView showMenuWithAnimation:self.flag];  
    ``` 
 ### 3. `追加菜单项目：`
 * **方法名称：**

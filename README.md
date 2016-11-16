@@ -29,8 +29,21 @@
            // 这里的目的是，让rightButton点击，可再次pop出menu
            weakSelf.flag = YES;
        }];
-   ```
-### 2. `追加菜单项目：`
+   ```  
+### 2. `展示`
+* **方法名称：**
+   ```Objective-C
+      + (void)showMenuWithAnimation:(BOOL)isShow;
+   ```  
+* **说明：**  
+   `自带动画缩放效果的pop展示，参数**_isSHow_**控制展示或不展示，(也可以通过hidden方法来控制隐藏，后续有说明)，`  
+
+* **方法调用：**
+   ```Objective-C
+   // self.flag : YES - 展示，NO - 不展示
+   [MenuView showMenuWithAnimation:self.flag];  
+   ``` 
+### 3. `追加菜单项目：`
 * **方法名称：**
    ```Objective-C
       + (void)appendMenuItemsWith:(NSArray *)appendItemsArray;
@@ -51,7 +64,7 @@
       [MenuView appendMenuItemsWith:newItemArray];
    ```  
 
-### 3. `更新菜单项：`
+### 4. `更新菜单项：`
 * **方法名称：**  
    ```Objective-C  
       + (void)updateMenuItemsWith:(NSArray *)newItemsArray;
@@ -70,7 +83,7 @@
       }
    ```  
 
-### 4.`隐藏和移除：`
+### 5.`隐藏和移除：`
 * **方法名称：**  
    ```Objective-C  
       /* 隐藏菜单 */

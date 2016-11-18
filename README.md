@@ -1,6 +1,6 @@
 # PopMenuTableView
 ## Easy to use this menu，that like iPad. 
-![KKPopMenu.gif](https://camo.githubusercontent.com/f6d3350b14dcf2ddad8ed4c6ccff001eebe55fcb/687474703a2f2f636f64652e636f636f616368696e612e636f6d2f75706c6f6164732f6174746163686d656e74732f32303136303832342f3133323638302f34343733663663323864653338383231323230353832633162353033623333652e676966)
+![KKPopMenu.gif](http://code.cocoachina.com/uploads/attachments/20161116/133497/93f19650012e63256f0259e5d2aa3a24.gif)
 
 ## 更新描述
 * 新增追加菜单项：在原有菜单基础上，增加一个或者多个菜单按钮。

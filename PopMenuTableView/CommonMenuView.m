@@ -88,10 +88,11 @@
     [self addSubview:tableView];
     [[UIApplication sharedApplication].keyWindow addSubview:self];
 }
-
+#pragma mark --- TableView DataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.menuDataArray.count;
 }
+
 - (MenuTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     MenuModel *model = self.menuDataArray[indexPath.row];
     MenuTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([MenuTableViewCell class]) forIndexPath:indexPath];
@@ -99,6 +100,7 @@
     cell.backgroundColor = [UIColor clearColor];
     return cell;
 }
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     MenuModel *model = self.menuDataArray[indexPath.row];
@@ -107,6 +109,7 @@
     }
 }
 
+#pragma mark --- 关于菜单展示
 - (void)displayAtPoint:(CGPoint)point{
     
     point = [self.superview convertPoint:point toView:self.window];
@@ -152,7 +155,6 @@
     }];
 }
 
-
 - (void)adjustPosition:(CGPoint)point{
     self.x = point.x - self.width * 0.5;
     self.y = point.y + kMargin;
@@ -163,7 +165,6 @@
     }
     self.layer.affineTransform = CGAffineTransformMakeScale(1.0, 1.0);
 }
-
 
 - (void)updateFrameForMenu{
     CommonMenuView *menuView = [[UIApplication sharedApplication].keyWindow viewWithTag:kMenuTag];
@@ -176,6 +177,7 @@
 }
 
 - (void)hiddenMenu{
+    self.contentTableView.contentOffset = CGPointMake(0, 0);
     [UIView animateWithDuration:0.25 animations:^{
         self.layer.affineTransform = CGAffineTransformMakeScale(0.01, 0.01);
         self.alpha = 0;
@@ -217,7 +219,7 @@
     return borderLayer;
 }
 
-#pragma mark -- 类方法
+#pragma mark --- 类方法封装
 + (CommonMenuView *)createMenuWithFrame:(CGRect)frame target:(UIViewController *)target dataArray:(NSArray *)dataArray itemsClickBlock:(void(^)(NSString *str, NSInteger tag))itemsClickBlock backViewTap:(void(^)())backViewTapBlock{
     
     CGFloat menuWidth = frame.size.width ? frame.size.width : 120;

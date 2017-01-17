@@ -32,7 +32,7 @@
 
 - (void)layoutSubviews{
     [super layoutSubviews];
-    _lineView.frame = CGRectMake(4, self.bounds.size.height - 1, self.bounds.size.width - 8, 1);
+    _lineView.frame = CGRectMake(4, self.bounds.size.height - 1, self.bounds.size.width - 8, 0.5);
 }
 
 - (void)setMenuModel:(MenuModel *)menuModel{

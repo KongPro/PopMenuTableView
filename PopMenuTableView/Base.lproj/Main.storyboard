@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zBj-Jq-qYI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zBj-Jq-qYI">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--动态菜单-->
+        <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
@@ -64,13 +65,51 @@
                             <constraint firstItem="cIK-P7-eCj" firstAttribute="topMargin" secondItem="1OL-5Q-WqO" secondAttribute="bottom" constant="60" id="zKo-ab-ACg"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="动态菜单" id="bfY-RD-Cuh">
-                        <barButtonItem key="rightBarButtonItem" title="Pop" id="POI-DO-bZB">
-                            <connections>
-                                <action selector="popMenu:" destination="BYZ-38-t0r" id="eLG-IQ-bsx"/>
-                            </connections>
-                        </barButtonItem>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="bfY-RD-Cuh">
+                        <nil key="title"/>
+                        <leftBarButtonItems>
+                            <barButtonItem systemItem="add" id="KfY-S2-Gab">
+                                <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="0.0"/>
+                                <color key="tintColor" red="0.31372549020000001" green="0.31372549020000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="popMenuAdd:" destination="BYZ-38-t0r" id="Ulh-ag-5K7"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="action" id="IZy-EW-WbA">
+                                <inset key="imageInsets" minX="0.0" minY="6" maxX="1" maxY="2"/>
+                                <color key="tintColor" red="0.31372549020000001" green="0.31372549020000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="popMenuAction:" destination="BYZ-38-t0r" id="4r0-l0-IqR"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
+                        <button key="titleView" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="8nU-am-ZYe">
+                            <rect key="frame" x="126" y="7" width="123" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="23"/>
+                            <state key="normal" title=" 动态菜单">
+                                <color key="titleColor" red="0.17254901959999999" green="0.17254901959999999" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                        </button>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="organize" id="POI-DO-bZB">
+                                <inset key="imageInsets" minX="1" minY="6" maxX="1" maxY="-2"/>
+                                <color key="tintColor" red="0.31372549020000001" green="0.31372549020000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="popMenuOrganize:" destination="BYZ-38-t0r" id="aqc-6j-nTP"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="compose" id="IXU-w0-OJl">
+                                <inset key="imageInsets" minX="1" minY="5" maxX="1" maxY="1"/>
+                                <color key="tintColor" red="0.31372549020000001" green="0.31372549020000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="popMenuCompose:" destination="BYZ-38-t0r" id="3Y5-h7-4AM"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="numberLabel" destination="1OL-5Q-WqO" id="Xab-IF-4LB"/>
                     </connections>

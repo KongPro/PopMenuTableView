@@ -7,13 +7,14 @@
 //
 
 #import "ViewController.h"
-#import "MenuView.h"
+#import "CommonMenuView.h"
+#import "UIView+AdjustFrame.h"
 
 @interface ViewController ()
 
 @property (nonatomic,assign) BOOL flag;
-@property (weak, nonatomic) IBOutlet UILabel *numberLabel;
 @property (nonatomic,assign) int itemCount;
+@property (weak, nonatomic) IBOutlet UILabel *numberLabel;
 
 @end
 
@@ -48,28 +49,38 @@
 
     __weak __typeof(&*self)weakSelf = self;
     /**
-     *  创建menu : frame传递nil，则取默认值，参数target必填，参数dataArray必填
+     *  创建普通的MenuView，frame可以传递空值，宽度默认120，高度自适应
      */
-    [MenuView createMenuWithFrame:CGRectZero target:self.navigationController dataArray:dataArray itemsClickBlock:^(NSString *str, NSInteger tag) {
-        
+    [CommonMenuView createMenuWithFrame:CGRectZero target:self dataArray:dataArray itemsClickBlock:^(NSString *str, NSInteger tag) {
         [weakSelf doSomething:(NSString *)str tag:(NSInteger)tag]; // do something
-        
     } backViewTap:^{
-        // 点击背景遮罩view后的block，可自定义事件
-        // 这里的目的是，让rightButton点击，可再次pop出menu
-        weakSelf.flag = YES;
+        weakSelf.flag = YES; // 这里的目的是，让rightButton点击，可再次pop出menu
     }];
 }
 
-- (IBAction)popMenu:(id)sender {    
+#pragma mark -- Nav上的四个button
+- (IBAction)popMenuOrganize:(id)sender {
+    [self popMenu:CGPointMake(self.navigationController.view.width - 30, 50)];
+}
+- (IBAction)popMenuCompose:(id)sender {
+    [self popMenu:CGPointMake(self.navigationController.view.width - 80, 50)];
+}
+- (IBAction)popMenuAction:(id)sender {
+    [self popMenu:CGPointMake(75, 50)];
+}
+- (IBAction)popMenuAdd:(id)sender {
+    [self popMenu:CGPointMake(30, 50)];
+}
+- (void)popMenu:(CGPoint)point{
     if (self.flag) {
-        [MenuView showMenuWithAnimation:self.flag];
+        [CommonMenuView showMenuAtPoint:point];
         self.flag = NO;
     }else{
-        [MenuView showMenuWithAnimation:self.flag];
+        [CommonMenuView hidden];
         self.flag = YES;
     }
 }
+
 
 #pragma mark  -- 增加一个菜单项
 - (IBAction)addMenuItem:(id)sender {
@@ -78,11 +89,10 @@
                               @"itemName" : [NSString stringWithFormat:@"新增项%d",self.itemCount + 1]
                               };
     NSArray *newItemArray = @[addDict];
-    
     /**
      *  追加菜单项
      */
-    [MenuView appendMenuItemsWith:newItemArray];
+    [CommonMenuView appendMenuItemsWith:newItemArray];
     
     self.itemCount ++;
     self.numberLabel.text = [NSString stringWithFormat:@"累计增加  %d  项", self.itemCount];
@@ -90,17 +100,16 @@
 
 #pragma mark -- 恢复菜单项
 - (IBAction)removeMenuItem:(id)sender {
-    
     /**
      *  更新菜单
      */
-    [MenuView updateMenuItemsWith:_dataArray];
+    [CommonMenuView updateMenuItemsWith:_dataArray];
     
     self.itemCount = 0;
     self.numberLabel.text = [NSString stringWithFormat:@"累计增加 %d 项", self.itemCount];
 }
 
-#pragma mark -- 回调事件
+#pragma mark -- 回调事件(自定义)
 - (void)doSomething:(NSString *)str tag:(NSInteger)tag{
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:str message:[NSString stringWithFormat:@"点击了第%ld个菜单项",tag] preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -108,13 +117,19 @@
     [alertController addAction:action];
     [self presentViewController:alertController animated:YES completion:nil];
     
-    [MenuView hidden];  // 隐藏菜单
+    [CommonMenuView hidden];
     self.flag = YES;
 }
 
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    UITouch *touch = touches.anyObject;
+    CGPoint point = [touch locationInView:touch.view];
+    [CommonMenuView showMenuAtPoint:point];
+}
 
+#pragma mark -- dealloc:释放菜单
 - (void)dealloc{
-    [MenuView clearMenu];   // 移除菜单
+    [CommonMenuView clearMenu];   // 移除菜单
 }
 
 @end

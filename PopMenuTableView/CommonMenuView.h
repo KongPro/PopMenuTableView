@@ -1,8 +1,8 @@
 //
-//  MenuView.h
+//  CommonMenuView.h
 //  PopMenuTableView
 //
-//  Created by 孔繁武 on 16/8/1.
+//  Created by 孔繁武 on 2016/12/1.
 //  Copyright © 2016年 KongPro. All rights reserved.
 //
 
@@ -10,12 +10,13 @@
 typedef void(^ItemsClickBlock)(NSString *str, NSInteger tag);
 typedef void(^BackViewTapBlock)();
 
-@interface MenuView : UIView
-
+@interface CommonMenuView : UIView
+/* 菜单点击回掉，默认值：6; */
 @property (nonatomic,copy) ItemsClickBlock itemsClickBlock;
-@property (nonatomic,copy) BackViewTapBlock backViewTapBlock;
 
-@property (nonatomic,assign) NSInteger maxValueForItemCount;  // 最多菜单项个数，默认值：6;
+@property (nonatomic,copy) BackViewTapBlock backViewTapBlock;
+/* 最多菜单项个数，默认值：6; */
+@property (nonatomic,assign) NSInteger maxValueForItemCount;
 
 /**
  *  menu
@@ -28,14 +29,14 @@ typedef void(^BackViewTapBlock)();
  *
  *  @return 返回创建对象
  */
-+ (MenuView *)createMenuWithFrame:(CGRect)frame target:(UIViewController *)target dataArray:(NSArray *)dataArray itemsClickBlock:(void(^)(NSString *str, NSInteger tag))itemsClickBlock backViewTap:(void(^)())backViewTapBlock;
++ (CommonMenuView *)createMenuWithFrame:(CGRect)frame target:(UIViewController *)target dataArray:(NSArray *)dataArray itemsClickBlock:(void(^)(NSString *str, NSInteger tag))itemsClickBlock backViewTap:(void(^)())backViewTapBlock;
 
 /**
- *  展示菜单
+ *  展示菜单,定点展示
  *
- *  @param isShow YES:展示  NO:隐藏
+ *  @param point 展示坐标
  */
-+ (void)showMenuWithAnimation:(BOOL)isShow;
++ (void)showMenuAtPoint:(CGPoint)point;
 
 /* 隐藏菜单 */
 + (void)hidden;
@@ -56,4 +57,6 @@ typedef void(^BackViewTapBlock)();
  *  @param itemsArray 需要更新的菜单项内容数组
  */
 + (void)updateMenuItemsWith:(NSArray *)newItemsArray;
+
+
 @end

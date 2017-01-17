@@ -1,14 +1,13 @@
 # PopMenuTableView
 ## Easy to use this menu，that like iPad. 
-![KKPopMenu.gif](http://code.cocoachina.com/uploads/attachments/20161116/133497/93f19650012e63256f0259e5d2aa3a24.gif)
+![KKPopMenu.gif](http://www.code4app.com/data/attachment/forum/201701/17/143035at0ftffqtt0tfctc.gif)
 
 ## 更新描述
+* 自适应方向，自适应箭头指示位置。
 * 新增追加菜单项：在原有菜单基础上，增加一个或者多个菜单按钮。
 * 更新菜单项内容：在原有菜单基础上，更新所有的菜单项内容。(**_`也可以局部更新`_**)。
 * 同样都是类方法实现，不需要显示的创建对象。
-* 增加一个maxValueForItemCount属性，防止菜单选项无限增加，导致过长超出屏幕范围。(**_`maxValueForItemCount默认值为6，即：菜单的最大长度等于6个单项的高度和，大于6个则需要滚动方式查看菜单项`_**)。
-* 代码进行了进一步封装，避免重复代码冗余。
-* 使用方法依旧只需要传递内容数组，无需其他多余步骤，更精简、更独立。
+* ⚠️使用方法依旧只需要传递内容数组，无需其他多余步骤。
 * **(⚠️注：所有的方法都是类方法，直接用类名调用即可,_`并留意文档最后的的参数说明`_)**
 
 ## 代码示例：
@@ -21,7 +20,7 @@
        /**
         *  创建menu
         */
-       [MenuView createMenuWithFrame : CGRectMake(x, y, width, height) 
+       [CommonMenuView createMenuWithFrame : CGRectMake(x, y, width, height) 
                               target : self.navigationController 
                            dataArray : dataArray 
                      itemsClickBlock : ^(NSString *str, NSInteger tag) {  /* do something */  } 
@@ -32,26 +31,26 @@
 * **方法名称：**  
 
    ```Objective-C
-      + (void)showMenuWithAnimation:(BOOL)isShow;
+      + (void)showMenuAtPoint:(CGPoint)point;
    ```  
 * **说明：**  
-   _自带**`动画缩放效果`**的pop展示，参数**`isSHow`**控制展示或不展示，(也可以通过**`hidden`**方法来控制隐藏，后续有说明)_
+   _根据菜单展示的位置，指示箭头默认适应点击坐标，高度超出屏幕，菜单自动翻转。_
 
-* **方法调用：**  
+* **调用示例：**  
    ```Objective-C
-      // self.flag : YES - 展示，NO - 不展示
-      [MenuView showMenuWithAnimation:self.flag];  
+      // point，展示的坐标
+      + (void)showMenuAtPoint:(CGPoint)point;
    ``` 
 ### 3. `追加菜单项：`
 * **方法名称：**
    ```Objective-C
-      + (void)appendMenuItemsWith:(NSArray *)appendItemsArray;
+      [CommonMenuView showMenuAtPoint:point];
    ```  
 
 * **说明：**  
    _在原有菜单项个数基础上，**`追加`**的菜单项（例如：原有菜单中有三项，需要**`增加第四，第五...项`**等），可以实现**`动态增加`**菜单项`_ 
    
-* **方法调用：**
+* **调用示例：**
    ```Objective-C
        //拼接字典数组，这里可以使用 
        NSDictionary *addDict = @{@"imageName" : @"icon_button_recall",
@@ -60,7 +59,7 @@
        NSArray *newItemArray = @[addDict];
 
        // 调用：参数newItemArray :追加的菜单项字典拼接成的数组
-      [MenuView appendMenuItemsWith:newItemArray];
+      [CommonMenuView appendMenuItemsWith:newItemArray];
    ```  
 
 ### 4. `更新菜单项：`
@@ -72,13 +71,13 @@
 * **说明：**  
    _**`更新修改所有`**菜单的内容，根据传入的**`字典数组`**内容，动态更新菜单项，只需要传递数组即可，其他无需多虑`_ 
    
-* **方法调用：**
+* **调用示例：**
    ```Objective-C
       - (IBAction)removeMenuItem:(id)sender {
           /**
            *  更新菜单: _dataArray是控制器中全局字典数组，存的是菜单项图标和功能名称
            */
-          [MenuView updateMenuItemsWith:_dataArray];
+          [CommonMenuView updateMenuItemsWith:_dataArray];
       }
    ```  
 
@@ -93,23 +92,22 @@
    ```  
 
 * **说明：**  
-
-   * _隐藏：对菜单的size进行缩小，考虑到当控制器始终存在时，即用户**`没有进行push，或者退出app`**的操作(pop的情况下面会提到)时，就没必要移除菜单，避免需要菜单时的反复创建，此时应调用**`hidden方法`**_
+   * **_只要程序不退出,只要不执行clearMenu方法，创建的菜单对象就一直在内存中。若有在其他控制器利用类方法调用并展示，一旦菜单项不同，请调用`updateMenuItemsWith:`方法更新菜单项目。**
+   * _隐藏：对菜单的size进行缩小，考虑到当控制器始终存在时，即用户**`没有进行push，或者退出app`**的操作(pop的情况下面会提到)时，就没必要移除菜单，避免需要菜单时的反复创建，此时应调用**`hidden方法`**_
    * _移除：从父试图remove掉，当用户进行**`pop`**，或者**`退出app`**的操作(控制器已经被销毁，就没必要保留菜单并占用内存空间了)时，应当调用**`clearMenu`**方法_
    
-* **方法调用：**
+* **调用示例：**
    ```Objective-C
-      [MenuView hidden];  // 隐藏菜单
-      [MenuView clearMenu];   // 移除菜单
+      [CommonMenuView hidden];  // 隐藏菜单
+      [CommonMenuView clearMenu];   // 移除菜单
    ```
  
 ## `参数描述：`
-* fame: 菜单坐标和宽高 **`(非必填，取默认值）`**
+* fame: 菜单坐标和宽高 **`(非必填，高度自适应，width默认120）`**
 * target：菜单将要展示的所在控制器 **`(参数必填)`**
 * dataArray：菜单项内容 **`(必填参数)`**
 * itemsClickBlock：点击菜单的block回调,回调菜单文字和下标
 * backViewTap：半透明背景点击回调
-* **(注：此菜单并非只能加在控制器的view上，有种特殊的需求就是，菜单背景图片的`“小尖尖”`要与navigationBar相交，此时target需要传递self.navigationController即可)**
+
 ### `温馨提示：`
-* demo中的target传递的是**_`self.navigationController`_**，frame参数的默认值也是相对**_`navigationBar`_**来取值。如果菜单要加在控制器的view上，则**_`按需`_**传递frame参数，位置可能需要细细调整，效果才最好。
-  
+* demo在Nav展示时候，fram的origin是自己写死的，至今没有找到能获取nav上按钮所在point的方法，如果大神们有好方法，或者对这个demo有改进意见，请发邮件：KongPro@163.com，不胜感激～🙏🙏🙏

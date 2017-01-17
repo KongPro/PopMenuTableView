@@ -1,6 +1,8 @@
 # PopMenuTableView
-## Easy to use this menu，that like iPad. 
-![KKPopMenu.gif](http://www.code4app.com/data/attachment/forum/201701/17/143035at0ftffqtt0tfctc.gif)
+## Easy to use this menu，that like iPad.
+`尴尬：图片抽搐了，下载运行看吧...`
+
+![动态菜单](http://www.code4app.com/data/attachment/forum/201701/17/143035at0ftffqtt0tfctc.gif)
 
 ## 更新描述
 * 自适应方向，自适应箭头指示位置。

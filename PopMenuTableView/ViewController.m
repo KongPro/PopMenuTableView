@@ -32,6 +32,7 @@
     
     /**
      *  这些数据是菜单显示的图片名称和菜单文字，请各位大牛指教，如果有更好的方法：
+     *  QQ :  827023449  (好友验证的问题随便写，最好有针对性)
      *  e-mail : KongPro@163.com，喜欢请在github上点颗星星，不胜感激！ 🙏
      *  GitHub : https://github.com/KongPro/PopMenuTableView
      */
